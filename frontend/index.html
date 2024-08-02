@@ -35,6 +35,37 @@
     </pre>
 
     <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            const eventSource = new EventSource('/upload');
+
+            eventSource.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                const progress = data.progress;
+                const remaining = data.remaining;
+                const done = data.done;
+
+                document.getElementById('progress-bar').style.width = progress + '%';
+                document.getElementById('progress-bar').innerText = progress + '%';
+                document.getElementById('remaining-time').innerText = 'Remaining Time: ' + remaining + ' seconds';
+
+                if (done) {
+                    document.getElementById('status').innerText = 'Status: Processing Complete!';
+                    eventSource.close();
+                } else {
+                    document.getElementById('status').innerText = 'Status: Processing...';
+                }
+            };
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            }).catch(err => console.error('Upload error:', err));
+        }
     </script>
 </body>
 </html>
