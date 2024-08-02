@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convert Me 2 Text</title>
+    <style>
+        #progress {
+            width: 100%;
+            background-color: #f3f3f3;
+            border: 1px solid #ddd;
+            margin: 20px 0;
+        }
+        #progress-bar {
+            width: 0%;
+            height: 30px;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+        }
+        #status {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Haydi Dosyanızı Dönüştürelim!</h1>
+    <pre>
+        Lütfen aşağıdaki butona basarak dosyanızı seçtikten sonra "Dönüştür" butonuna basınız.
+    <input type="file" id="fileInput" />
+    <button onclick="uploadFile()">Dönüştür</button>
+    <div id="progress">
+        <div id="progress-bar"></div>
+    </div>
+    <p id="remaining-time"></p>
+    <p id="status">Durum: Dosyanın yüklenmesi bekleniyor…</p>
+    </pre>
+
+    <script>
+    </script>
+</body>
+</html>
