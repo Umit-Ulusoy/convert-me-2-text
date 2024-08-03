@@ -13,3 +13,12 @@ def create_pdf(pdf_output_path, ocr_text):
         pdf.cell(200, 10, txt=line, ln=True, align='L')
 
     pdf.output(pdf_output_path)
+
+def count_images_in_pdf(pdf_document):
+    total_images = 0
+    for page_num in range(len(pdf_document)):
+        page = pdf_document.load_page(page_num)
+        image_list = page.get_images(full=True)
+        total_images += len(image_list)
+
+    return total_images
